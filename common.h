@@ -45,4 +45,10 @@ void remove_first_entry_line(text txt);
  */
 void shownum(text txt);
 
+
+/**
+ * Выводит строки, в которых содержатся цифры
+ */
+void showlineswithdigits(text txt);
+
 #endif
