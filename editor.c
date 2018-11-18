@@ -87,6 +87,12 @@ int main()
             shownum(txt);
             continue;
         }
+        
+	/* Выводим строки, в которых встречаются цифры */
+ 	if (strcmp(cmd, "showlineswithdigits") == 0) {
+            showlineswithdigits(txt);
+            continue;
+        }
                 
         /* Если команда не известна */
         fprintf(stderr, "Unknown command: %s\n", cmd);
