@@ -93,6 +93,12 @@ int main()
             showlineswithdigits(txt);
             continue;
         }
+
+	/* Выводим содержимое непустых строк */
+ 	if (strcmp(cmd, "shownonempty") == 0) {
+            shownonempty(txt);
+            continue;
+        }
                 
         /* Если команда не известна */
         fprintf(stderr, "Unknown command: %s\n", cmd);
