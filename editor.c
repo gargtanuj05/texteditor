@@ -21,18 +21,18 @@ int main()
     char *cmd;
     char *arg;
 	
-	char* cursor;
-	char* line;
+	char* cursor = NULL;
+	char* line = NULL;
     
     /* Создаем объект для представления текста */
     text txt = create_text();
-	text tmp = NULL;
+	int isempty = 1;
 
     /* Цикл обработки команд */
     while (1) {
         printf("ed > ");
-		if (tmp != NULL)
-			restore(txt, tmp);
+		if (!isempty && cursor != NULL && line != NULL)
+			remove_cursor(txt, atoi(cursor), atoi(line));
 		
         /* Получаем команду */
         fgets(cmdline, MAXLINE, stdin);
@@ -48,7 +48,7 @@ int main()
         if (strcmp(cmd, "quit") == 0) {
             fprintf(stderr, "Bye!\n");
             break;
-        }
+        } 
 
         /* Загружаем содержимое файла, заданного параметром */
         if (strcmp(cmd, "load") == 0) {
@@ -56,16 +56,10 @@ int main()
                 fprintf(stderr, "Usage: load filename\n");
             } else {
                 load(txt, arg);
-				tmp = create_text();
-				restore(tmp, txt);
-            }
+				isempty = 0;
+			}
             continue;
         }
-
-		/* Отображаем позицию курсора символом "|" */
-		if ((cursor = strtok(NULL, " \n")) != NULL && (line = strtok(NULL, " \n")) != NULL && tmp != NULL) {
-			cursor_highlight(txt, atoi(cursor), atoi(line));
-		} 
 		
 		/* Сохраняем текст в указанный файл */
         if (strcmp(cmd, "save") == 0) {
@@ -76,7 +70,11 @@ int main()
             }
             continue;
         }
-
+		
+		/* Отображаем позицию курсора символом "|" */
+		if (!isempty && (cursor = strtok(NULL, " \n")) != NULL && (line = strtok(NULL, " \n")) != NULL)
+			cursor_highlight(txt, atoi(cursor), atoi(line));
+	
         /* Выводим текст */
         if (strcmp(cmd, "show") == 0) {
             show(txt);

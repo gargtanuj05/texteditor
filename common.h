@@ -61,9 +61,9 @@ void shownonempty(text txt);
 void cursor_highlight(text txt, int cursor, int line);
 
 /**
- * Возвращает текст к некоторому исходному состоянию
+ * Удаляет символ курсора из строки
  */
-void restore(text txt, text tmp);
+void remove_cursor(text txt, int cursor, int line);
 
 /**
  * Организует вывод первого слова из строки
