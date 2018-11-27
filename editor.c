@@ -20,22 +20,28 @@ int main()
     char cmdline[MAXLINE + 1];
     char *cmd;
     char *arg;
+	
+	char* cursor;
+	char* line;
     
     /* Создаем объект для представления текста */
     text txt = create_text();
+	text tmp = NULL;
 
     /* Цикл обработки команд */
     while (1) {
         printf("ed > ");
-        
+		if (tmp != NULL)
+			restore(txt, tmp);
+		
         /* Получаем команду */
         fgets(cmdline, MAXLINE, stdin);
-
+		
         /* Извлекаем имя команды */
         if ((cmd = strtok(cmdline, " \n")) == NULL) {
             continue;
         }
-
+		
         /* Распознаем поддерживаемую команду */
         
         /* Завершаем работу редактора */
@@ -50,11 +56,18 @@ int main()
                 fprintf(stderr, "Usage: load filename\n");
             } else {
                 load(txt, arg);
+				tmp = create_text();
+				restore(tmp, txt);
             }
             continue;
         }
 
-	/* Сохраняем текст в указанный файл */
+		/* Отображаем позицию курсора символом "|" */
+		if ((cursor = strtok(NULL, " \n")) != NULL && (line = strtok(NULL, " \n")) != NULL && tmp != NULL) {
+			cursor_highlight(txt, atoi(cursor), atoi(line));
+		} 
+		
+		/* Сохраняем текст в указанный файл */
         if (strcmp(cmd, "save") == 0) {
             if ((arg = strtok(NULL, " \n")) == NULL) {
                 fprintf(stderr, "Usage: save filename\n");
@@ -76,33 +89,39 @@ int main()
             continue;
         }
         
- 	/* Удаляем первую пустую строку */
-	if (strcmp(cmd, "r1e") == 0) {
-            remove_first_entry_line(txt);
-            continue;
-        }
+		/* Удаляем первую пустую строку */
+		if (strcmp(cmd, "r1e") == 0) {
+			remove_first_entry_line(txt);
+			continue;
+		}
 
-	/* Выводим содержимое с нумерацией строк */
-	if (strcmp(cmd, "shownum") == 0) {
-            shownum(txt);
-            continue;
-        }
-        
-	/* Выводим строки, в которых встречаются цифры */
- 	if (strcmp(cmd, "showlineswithdigits") == 0) {
-            showlineswithdigits(txt);
-            continue;
-        }
+		/* Выводим содержимое с нумерацией строк */
+		if (strcmp(cmd, "shownum") == 0) {
+			shownum(txt);
+			continue;
+		}
+			
+		/* Выводим строки, в которых встречаются цифры */
+		if (strcmp(cmd, "showlineswithdigits") == 0) {
+			showlineswithdigits(txt);
+			continue;
+		}
 
-	/* Выводим содержимое непустых строк */
- 	if (strcmp(cmd, "shownonempty") == 0) {
-            shownonempty(txt);
-            continue;
-        }
-                
-        /* Если команда не известна */
-        fprintf(stderr, "Unknown command: %s\n", cmd);
+		/* Выводим содержимое непустых строк */
+		if (strcmp(cmd, "shownonempty") == 0) {
+			shownonempty(txt);
+			continue;
+		}
+		
+		/* Выводим первое слово из каждой строки */
+		if (strcmp(cmd, "showfirstwords") == 0) {
+			showfirstwords(txt);
+			continue;
+		}
+			
+		/* Если команда не известна */
+		fprintf(stderr, "Unknown command: %s\n", cmd);
     }
-
+	
     return 0;
 }

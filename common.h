@@ -55,4 +55,19 @@ void showlineswithdigits(text txt);
  */
 void shownonempty(text txt);
 
+/**
+ * Подсвечивает курсор
+ */
+void cursor_highlight(text txt, int cursor, int line);
+
+/**
+ * Возвращает текст к некоторому исходному состоянию
+ */
+void restore(text txt, text tmp);
+
+/**
+ * Организует вывод первого слова из строки
+ */
+void showfirstwords(text txt);
+
 #endif
