@@ -59,4 +59,13 @@ void process_forward(
  */
 void remove_all(text txt);
 
+/**
+ * Удаляет строку из текста
+ * 
+ * @param txt текст
+ * @param line_num номер строки
+ * @returns none
+ */
+void delete_line(text txt, int line_num);
+
 #endif

@@ -56,16 +56,6 @@ void showlineswithdigits(text txt);
 void shownonempty(text txt);
 
 /**
- * Подсвечивает курсор
- */
-void cursor_highlight(text txt, int cursor, int line);
-
-/**
- * Удаляет символ курсора из строки
- */
-void remove_cursor(text txt, int cursor, int line);
-
-/**
  * Организует вывод первого слова из строки
  */
 void showfirstwords(text txt);

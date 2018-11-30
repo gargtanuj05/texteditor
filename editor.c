@@ -26,13 +26,10 @@ int main()
     
     /* Создаем объект для представления текста */
     text txt = create_text();
-	int isempty = 1;
-
+	
     /* Цикл обработки команд */
     while (1) {
         printf("ed > ");
-		if (!isempty && cursor != NULL && line != NULL)
-			remove_cursor(txt, atoi(cursor), atoi(line));
 		
         /* Получаем команду */
         fgets(cmdline, MAXLINE, stdin);
@@ -41,7 +38,6 @@ int main()
         if ((cmd = strtok(cmdline, " \n")) == NULL) {
             continue;
         }
-		
         /* Распознаем поддерживаемую команду */
         
         /* Завершаем работу редактора */
@@ -54,10 +50,8 @@ int main()
         if (strcmp(cmd, "load") == 0) {
             if ((arg = strtok(NULL, " \n")) == NULL) {
                 fprintf(stderr, "Usage: load filename\n");
-            } else {
+            } else
                 load(txt, arg);
-				isempty = 0;
-			}
             continue;
         }
 		
@@ -70,10 +64,6 @@ int main()
             }
             continue;
         }
-		
-		/* Отображаем позицию курсора символом "|" */
-		if (!isempty && (cursor = strtok(NULL, " \n")) != NULL && (line = strtok(NULL, " \n")) != NULL)
-			cursor_highlight(txt, atoi(cursor), atoi(line));
 	
         /* Выводим текст */
         if (strcmp(cmd, "show") == 0) {
