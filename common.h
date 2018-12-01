@@ -56,7 +56,11 @@ void showlineswithdigits(text txt);
 void shownonempty(text txt);
 
 
-void mwcrsr(text txt, int position, int line);
+void mwcrsr(text txt, int line, int position);
+
+void mwbb(text txt);
+
+void getcrsr(text txt);
 
 /**
  * Организует вывод первого слова из строки

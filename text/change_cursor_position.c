@@ -1,5 +1,5 @@
 /**
- * shownonempty.c -- реализует команду вывода содержимого непустых строк
+ * change_cursor_position -- реализует перемещение курсора
  *
  * Copyright (c) 2018, Egor Ignatov <ignatov@petrsu.ru>
  *
@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-void change_cursor_position(text txt, int new_position, int new_line)
+void change_cursor_position(text txt, int new_line, int new_position)
 {
     node *p;
     p = txt->begin;

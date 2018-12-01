@@ -107,7 +107,18 @@ int main()
       mwcrsr(txt, atoi(position), atoi(line));
       continue;
     }
-		
+    
+    /* Выводим координаты курсора*/
+    if (strcmp(cmd, "getcrsr") == 0){
+        getcrsr(txt);
+        continue;
+    }
+    
+    /* Перемещаем курсор в начало слова, если возможно*/
+    if (strcmp(cmd, "mwbb") == 0){
+        mwbb(txt);
+        continue;
+    }
     /* Выводим первое слово из каждой строки */
     if (strcmp(cmd, "showfirstwords") == 0) {
       showfirstwords(txt);
