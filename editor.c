@@ -101,6 +101,13 @@ int main()
 			continue;
 		}
 		
+		/* Меняем позицию курсора на заданную*/
+		if (strcmp(cmd, "mwcrsr") == 0){
+            char* position = strtok(NULL, " \n"), *line = strtok(NULL, " \n");
+            mwcrsr(txt, atoi(position), atoi(line));
+            continue;
+        }
+		
 		/* Выводим первое слово из каждой строки */
 		if (strcmp(cmd, "showfirstwords") == 0) {
 			showfirstwords(txt);
