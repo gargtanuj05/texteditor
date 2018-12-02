@@ -34,6 +34,6 @@ static void move_cursor_left(int index, char *contents, int cursor, void*data)
     while(cursor > 0 && !isspace(contents[cursor])){
       cursor--;
     }
-    mwcrsr(data, index, cursor);
+    mwcrsr(data, index + 1, cursor + 1);
   }
 }

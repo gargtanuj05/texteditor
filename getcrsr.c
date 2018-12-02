@@ -27,6 +27,6 @@ static void get_cursor_position(int index, char* contents, int cursor, void* dat
 
   UNUSED(data);
   if (cursor >= 0){
-    printf("cursor line - %d\ncursor position -  %d\n", index, cursor);
+    printf("cursor line - %d\ncursor position -  %d\n", index + 1, cursor + 1);
   }
 }
