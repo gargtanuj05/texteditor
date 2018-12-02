@@ -5,7 +5,7 @@
 #include "common.h"
 #include "text/text.h"
 
-change_cursor_position(text txt, int line, int cursor);
+void change_cursor_position(text txt, int line, int cursor);
 
 
 void mwcrsr(text txt, int line, int cursor)

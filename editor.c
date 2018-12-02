@@ -119,6 +119,11 @@ int main()
       mwbb(txt);
       continue;
     }
+    
+    if (strcmp(cmd, "rc") == 0){
+      remove_current_line(txt);
+      continue;
+    }
 
     /* Выводим первое слово из каждой строки */
     if (strcmp(cmd, "showfirstwords") == 0) {

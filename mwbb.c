@@ -29,9 +29,9 @@ static void move_cursor_left(int index, char *contents, int cursor, void*data)
 
   /* Декларируем неиспользуемые параметры */
   UNUSED(data);
-  if (cursor >= 0){
+  if (cursor > 0){
     printf("%d %d\n",index, cursor);
-    while(cursor > 0 && !isspace(contents[cursor])){
+    while(cursor > 1 && !isspace(contents[cursor])){
       cursor--;
     }
     mwcrsr(data, index + 1, cursor + 1);

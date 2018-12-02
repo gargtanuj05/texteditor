@@ -1,5 +1,5 @@
 /**
-* change_cursor_position -- реализует перемещение курсора
+* get_cursor_position -- реализует получение координат курсора
 *
 * Copyright (c) 2018, Egor Ignatov <ignatov@petrsu.ru>
 *
@@ -24,7 +24,6 @@ void getcrsr(text txt)
 static void get_cursor_position(int index, char* contents, int cursor, void* data)
 {
   assert(contents != NULL);
-
   UNUSED(data);
   if (cursor >= 0){
     printf("cursor line - %d\ncursor position -  %d\n", index + 1, cursor + 1);

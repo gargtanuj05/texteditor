@@ -55,6 +55,9 @@ void showlineswithdigits(text txt);
 */
 void shownonempty(text txt);
 
+/**
+ * Перемещает курсор в указанную позицию
+ */
 void mwcrsr(text txt, int line, int position);
 
 /**
@@ -62,7 +65,15 @@ void mwcrsr(text txt, int line, int position);
 */
 void mwbb(text txt);
 
+/**
+ * Возвращает текущую позицию курсора
+ */
 void getcrsr(text txt);
+
+/**
+ * Удаляет текущю строку
+ */
+void remove_current_line(text txt);
 
 /**
 * Организует вывод первого слова из строки
