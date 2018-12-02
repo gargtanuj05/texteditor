@@ -20,10 +20,8 @@ static void shownum_line(int index, char *contents, int cursor, void *data);
 /**
  * Выводит содержимое с нумерацией строк
  */
-static int number;
 void shownum(text txt)
 {
-    number = 1;
     process_forward(txt, shownum_line, NULL);
 }
 
@@ -42,7 +40,6 @@ static void shownum_line(int index, char *contents, int cursor, void *data)
 
     /* Выводим строку и ее номер на экран */
     if (contents[0] != '\0') {
-    	printf(MAGENTA "%d" RESET " %s", number, contents);
-    	number++;
+    	printf(MAGENTA "%d" RESET " %s", index + 1, contents);
     }
 }

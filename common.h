@@ -55,9 +55,11 @@ void showlineswithdigits(text txt);
  */
 void shownonempty(text txt);
 
-
 void mwcrsr(text txt, int line, int position);
 
+/**
+ * Перемещает курсор в начало текущего слова, если это возможно 
+ */
 void mwbb(text txt);
 
 void getcrsr(text txt);
@@ -66,5 +68,10 @@ void getcrsr(text txt);
  * Организует вывод первого слова из строки
  */
 void showfirstwords(text txt);
+
+/**
+ * Перемещает первую строку в конец текста
+ */
+void c1n(text txt);
 
 #endif
