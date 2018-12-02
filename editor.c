@@ -1,10 +1,10 @@
 /**
- * editor.c -- строковый текстовый редактор
- *
- * Copyright (c) 2017, Alexander Borodin <aborod@petrsu.ru>
- *
- * This code is licensed under a MIT-style license.
- */
+* editor.c -- строковый текстовый редактор
+*
+* Copyright (c) 2017, Alexander Borodin <aborod@petrsu.ru>
+*
+* This code is licensed under a MIT-style license.
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -49,18 +49,18 @@ int main()
     /* Загружаем содержимое файла, заданного параметром */
     if (strcmp(cmd, "load") == 0) {
       if ((arg = strtok(NULL, " \n")) == NULL) {
-	fprintf(stderr, "Usage: load filename\n");
+        fprintf(stderr, "Usage: load filename\n");
       } else
-	load(txt, arg);
+      load(txt, arg);
       continue;
     }
 
     /* Сохраняем текст в указанный файл */
     if (strcmp(cmd, "save") == 0) {
       if ((arg = strtok(NULL, " \n")) == NULL) {
-	fprintf(stderr, "Usage: save filename\n");
+        fprintf(stderr, "Usage: save filename\n");
       } else {
-	save(txt, arg);
+        save(txt, arg);
       }
       continue;
     }
@@ -110,14 +110,14 @@ int main()
 
     /* Выводим координаты курсора*/
     if (strcmp(cmd, "getcrsr") == 0){
-        getcrsr(txt);
-        continue;
+      getcrsr(txt);
+      continue;
     }
 
     /* Перемещаем курсор в начало слова, если возможно*/
     if (strcmp(cmd, "mwbb") == 0){
-        mwbb(txt);
-        continue;
+      mwbb(txt);
+      continue;
     }
 
     /* Выводим первое слово из каждой строки */
@@ -126,7 +126,7 @@ int main()
       continue;
     }
 
-	  /* Перемещаем первую строку в конец текста */
+    /* Перемещаем первую строку в конец текста */
     if (strcmp(cmd, "c1n") == 0) {
       c1n(txt);
       continue;

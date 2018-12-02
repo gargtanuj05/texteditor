@@ -1,10 +1,10 @@
 /**
- * change_cursor_position -- реализует перемещение курсора
- *
- * Copyright (c) 2018, Egor Ignatov <ignatov@petrsu.ru>
- *
- * This code is licensed under a MIT-style license.
- */
+* change_cursor_position -- реализует перемещение курсора
+*
+* Copyright (c) 2018, Egor Ignatov <ignatov@petrsu.ru>
+*
+* This code is licensed under a MIT-style license.
+*/
 
 #include <stdio.h>
 #include <assert.h>
