@@ -10,6 +10,7 @@
 #define COMMON_H
 
 #include "text/text.h"
+#include "data.h"
 
 /* Декларирует неиспользуемый аргумент,
 * корректно подавляя предупреждение вида "unused parameter" */
@@ -68,7 +69,7 @@ void mwbb(text txt);
 /**
  * Возвращает текущую позицию курсора
  */
-void getcrsr(text txt);
+dat getcrsr(text txt);
 
 /**
  * Удаляет текущю строку
@@ -84,5 +85,7 @@ void showfirstwords(text txt);
 * Перемещает первую строку в конец текста
 */
 void c1n(text txt);
+
+void printpos(dat val);
 
 #endif

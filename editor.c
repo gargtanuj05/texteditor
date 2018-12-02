@@ -136,7 +136,11 @@ int main()
       c1n(txt);
       continue;
     }
-
+    
+    if (strcmp(cmd, "printpos") == 0) {
+      printpos(getcrsr(txt));
+      continue;
+    }
     /* Если команда не известна */
     fprintf(stderr, "Unknown command: %s\n", cmd);
   }
