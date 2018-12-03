@@ -91,7 +91,7 @@ int main()
       showlineswithdigits(txt);
       continue;
     }
-    
+
     /* Заменяет непробельные символы на символ '*' звезды */
     if (strcmp(cmd, "showclassified") == 0) {
       showclassified(txt);
@@ -113,7 +113,7 @@ int main()
           printf("Uasge: mwcrsr line position");
       continue;
     }
-    
+
     /* Перемещаем курсор в нчало слова */
     if (strcmp(cmd, "mwbb") == 0){
       mwbb(txt);
@@ -137,10 +137,16 @@ int main()
       c1n(txt);
       continue;
     }
-    
+
     /* Перемещаем курсор в начало строки */
     if (strcmp(cmd, "mlb") == 0) {
       cursor_to_begin(txt);
+      continue;
+    }
+
+    /* Выводим часть строки от начала до курсора */
+    if (strcmp(cmd, "plb") == 0) {
+      plb(txt);
       continue;
     }
 

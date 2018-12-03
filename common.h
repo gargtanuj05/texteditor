@@ -98,4 +98,9 @@ void printpos(dat val);
 */
 void cursor_to_begin(text txt);
 
+/**
+*  Выводит на экран часть строки от начала до курсора
+*/
+void plb(text txt);
+
 #endif
