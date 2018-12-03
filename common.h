@@ -57,6 +57,11 @@ void showlineswithdigits(text txt);
 void shownonempty(text txt);
 
 /**
+* Заменяет непробельные символы на символ '*' звезды
+*/
+void showclassified(text txt);
+
+/**
 * Перемещает курсор в указанную позицию
 */
 void mwcrsr(text txt, int line, int position);

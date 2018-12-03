@@ -91,6 +91,12 @@ int main()
       showlineswithdigits(txt);
       continue;
     }
+    
+    /* Заменяет непробельные символы на символ '*' звезды */
+    if (strcmp(cmd, "showclassified") == 0) {
+      showclassified(txt);
+      continue;
+    }
 
     /* Выводим содержимое непустых строк */
     if (strcmp(cmd, "shownonempty") == 0) {
