@@ -29,6 +29,7 @@ void showupper(text txt)
 {
     /* Применяем функцию showupper_line к каждой строке текста */
     process_forward(txt, showupper_line, NULL);
+    printf("\n");
 }
 
 static void showupper_line(int index, char *contents, int cursor, void *data)
