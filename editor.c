@@ -21,9 +21,6 @@ int main()
   char *cmd;
   char *arg;
 
-  char* cursor = NULL;
-  char* line = NULL;
-
   /* Создаем объект для представления текста */
   text txt = create_text();
 
@@ -101,14 +98,14 @@ int main()
       continue;
     }
 
-    /* Меняем позицию курсора на заданную*/
+    /* Меняем позицию курсора на заданную */
     if (strcmp(cmd, "mwcrsr") == 0){
       char* position = strtok(NULL, " \n"), *line = strtok(NULL, " \n");
       mwcrsr(txt, atoi(position), atoi(line));
       continue;
     }
 
-    /* Выводим координаты курсора*/
+    /* Выводим координаты курсора */
     if (strcmp(cmd, "getcrsr") == 0){
       getcrsr(txt);
       continue;
@@ -119,7 +116,8 @@ int main()
       mwbb(txt);
       continue;
     }
-    
+
+    /* Удаляем текущую строку */
     if (strcmp(cmd, "rc") == 0){
       remove_current_line(txt);
       continue;
@@ -136,11 +134,18 @@ int main()
       c1n(txt);
       continue;
     }
-    
+
     if (strcmp(cmd, "printpos") == 0) {
       printpos(getcrsr(txt));
       continue;
     }
+
+    /* Перемещаем курсор в начало строки */
+    if (strcmp(cmd, "mlb") == 0) {
+      cursor_to_begin(txt);
+      continue;
+    }
+
     /* Если команда не известна */
     fprintf(stderr, "Unknown command: %s\n", cmd);
   }

@@ -30,10 +30,8 @@ void c1n(text txt)
 
 static void read_first(int index, char *contents, int cursor, void *data)
 {
-	/* Функция обработчик всегда получает существующую строку */
 	assert(contents != NULL);
 
-	/* Декларируем неиспользуемые параметры */
 	UNUSED(cursor);
 	UNUSED(data);
 

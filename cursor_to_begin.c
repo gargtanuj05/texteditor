@@ -16,28 +16,23 @@
 static void mlb(int index, char *contents, int cursor, void *data);
 
 /**
-* Выводит содержимое указанного файла на экран
+* Переводит курсор в начало текущей строки
 */
 void cursor_to_begin(text txt)
 {
-  /* Применяем функцию show_line к каждой строке текста */
+  /* Применяем функцию mlb к каждой строке текста */
   process_forward(txt, mlb, txt);
 }
 
-/**
-* Выводит содержимое указанного файла на экран
-*/
 static void mlb(int index, char *contents, int cursor, void *data)
 {
-  /* Функция обработчик всегда получает существующую строку */
   assert(contents != NULL);
 
-  /* Декларируем неиспользуемые параметры */
   UNUSED(index);
   UNUSED(cursor);
   UNUSED(data);
 
   if (cursor != -1){
-    change_cursor_position(data, index, 0);
+    change_cursor_position((text)data, index + 1, 1);
   }
 }

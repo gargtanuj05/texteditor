@@ -57,8 +57,8 @@ void showlineswithdigits(text txt);
 void shownonempty(text txt);
 
 /**
- * Перемещает курсор в указанную позицию
- */
+* Перемещает курсор в указанную позицию
+*/
 void mwcrsr(text txt, int line, int position);
 
 /**
@@ -67,13 +67,13 @@ void mwcrsr(text txt, int line, int position);
 void mwbb(text txt);
 
 /**
- * Возвращает текущую позицию курсора
- */
+* Возвращает текущую позицию курсора
+*/
 dat getcrsr(text txt);
 
 /**
- * Удаляет текущю строку
- */
+* Удаляет текущю строку
+*/
 void remove_current_line(text txt);
 
 /**
@@ -87,5 +87,10 @@ void showfirstwords(text txt);
 void c1n(text txt);
 
 void printpos(dat val);
+
+/**
+* Перемещает курсор в начало строки
+*/
+void cursor_to_begin(text txt);
 
 #endif

@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <assert.h>
+#include <string.h>
 #include "common.h"
 #include "text/text.h"
 
@@ -36,5 +37,16 @@ static void show_line(int index, char *contents, int cursor, void *data)
   UNUSED(data);
 
   /* Выводим строку на экран */
-  printf("%s", contents);
+  char line[MAXLINE];
+  char output_line[MAXLINE];
+  strcpy(line, contents);
+
+  if (cursor >= 0){
+    strncpy(output_line, line, cursor);
+    output_line[cursor] = '|';
+    strcpy(output_line+cursor+1, line+cursor);
+    printf("%s", output_line);
+  } else {
+    printf("%s", line);
+  }
 }

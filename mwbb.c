@@ -15,7 +15,6 @@
 
 static void move_cursor_left(int index, char *contents, int cursor, void*data);
 
-
 void mwbb(text txt)
 {
   process_forward(txt, move_cursor_left, txt);
@@ -24,11 +23,10 @@ void mwbb(text txt)
 
 static void move_cursor_left(int index, char *contents, int cursor, void*data)
 {
-  /* Функция обработчик всегда получает существующую строку */
   assert(contents != NULL);
 
-  /* Декларируем неиспользуемые параметры */
   UNUSED(data);
+  
   if (cursor > 0){
     printf("%d %d\n",index, cursor);
     while(cursor > 1 && !isspace(contents[cursor])){

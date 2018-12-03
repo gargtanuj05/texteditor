@@ -1,10 +1,10 @@
 /**
-* showupper.c -- функция вывода текста из файла прописными буквами
-*
-* Copyright (c) 2018, Hristoforov Egor <hristofo@petrsu.ru>
-*
-* This code is licensed under a MIT-style license.
-*/
+ * showupper.c -- функция вывода текста из файла прописными буквами
+ *
+ * Copyright (c) 2018, Hristoforov Egor <hristofo@petrsu.ru>
+ *
+ * This code is licensed under a MIT-style license.
+ */
 
 #include <stdio.h>
 #include <assert.h>
@@ -13,40 +13,44 @@
 #include "common.h"
 #include "text/text.h"
 
-static void show_line(int index, char *contents, int cursor, void *data);
-
-/**
-* Выводит содержимое указанного файла на экран
-*/
-void showupper(text txt)
-{
-  /* Применяем функцию show_line к каждой строке текста */
-  process_forward(txt, show_line, NULL);
+void toup(char *s){
+    int len = strlen(s);
+    for (int i = 0; i < len; i++){
+        s[i] = toupper(s[i]);
+    }
 }
 
+static void showupper_line(int index, char *contents, int cursor, void *data);
+
 /**
-* Выводит содержимое указанного файла на экран
-*/
-static void show_line(int index, char *contents, int cursor, void *data)
+ * Выводит текст в верхнем регистре
+ */
+void showupper(text txt)
 {
-  /* Функция обработчик всегда получает существующую строку */
-  assert(contents != NULL);
+    /* Применяем функцию showupper_line к каждой строке текста */
+    process_forward(txt, showupper_line, NULL);
+}
 
-  /* Декларируем неиспользуемые параметры */
-  UNUSED(index);
-  UNUSED(cursor);
-  UNUSED(data);
+static void showupper_line(int index, char *contents, int cursor, void *data)
+{
+    assert(contents != NULL);
 
-  /* Капитализация символов */
+    UNUSED(index);
+    UNUSED(data);
 
-  int len = strlen(contents);
-  char line[MAXLINE];
-  strcpy(line, contents);
+    /* Капитализация символов */
+    char line[MAXLINE];
+    char output_line[MAXLINE];
+    strcpy(line, contents);
 
-  for (int i = 0; i < len; i++){
-    line[i] = toupper(line[i]);
-  }
-
-  /* Выводим строку на экран */
-  printf("%s", line);
+    if (cursor >= 0){
+        strncpy(output_line, line, cursor);
+        output_line[cursor] = '|';
+        strcpy(output_line+cursor+1, line+cursor);
+        toup(output_line);
+        printf("%s", output_line);
+    } else {
+        toup(line);
+        printf("%s", line);
+    }
 }

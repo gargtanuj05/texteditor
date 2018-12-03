@@ -15,9 +15,7 @@
 static void showfirstwords_line (int index, char *contents, int cursor, void *data);
 
 void showfirstwords (text txt) {
-
 	process_forward(txt, showfirstwords_line, NULL);
-
 }
 
 static void showfirstwords_line (int index, char *contents, int cursor, void *data) {
@@ -28,7 +26,7 @@ static void showfirstwords_line (int index, char *contents, int cursor, void *da
 	UNUSED(cursor);
 	UNUSED(data);
 
-	char* line = strtok(contents, " ");
+	char* line = strtok(contents, " \n");
 
-	printf("%s", line);
+	printf("%s\n", line);
 }

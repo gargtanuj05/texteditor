@@ -22,14 +22,17 @@ dat getcrsr(text txt)
 {
   int val;
   val = setjmp(s_jumpBuffer);
+  dat data;
+  data.cursor = 0;
+  data.line = 0;
   if (val){
-      dat data;
-      data.cursor = val & 65535;
-      val /= 65536;
-      data.line = val;
-      return data;
+    data.cursor = val & 65535;
+    val /= 65536;
+    data.line = val;
+    return data;
   }
   process_forward(txt, get_cursor_position, NULL);
+  return data;
 }
 
 static void get_cursor_position(int index, char* contents, int cursor, void* data)

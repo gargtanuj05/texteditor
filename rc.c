@@ -24,7 +24,6 @@ void remove_current_line(text txt){
 
 static void remove_line(int index, char *contents, int cursor, void *data)
 {
-  /* Функция обработчик всегда получает существующую строку */
   assert(contents != NULL);
 
   if (cursor > 0){

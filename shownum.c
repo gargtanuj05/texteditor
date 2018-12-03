@@ -11,6 +11,7 @@
 #include "common.h"
 #include "text/text.h"
 #include <stdlib.h>
+#include <string.h>
 
 #define MAGENTA "\x1b[35m"
 #define RESET "\033[0m"
@@ -25,21 +26,26 @@ void shownum(text txt)
   process_forward(txt, shownum_line, NULL);
 }
 
-/**
-* Выводит содержимое с нумерацией строк
-*/
 static void shownum_line(int index, char *contents, int cursor, void *data)
 {
-  /* Функция обработчик всегда получает существующую строку */
   assert(contents != NULL);
 
-  /* Декларируем неиспользуемые параметры */
-  UNUSED(cursor);
   UNUSED(data);
-  UNUSED(index);
+  UNUSED(cursor);
+
+  char line[MAXLINE];
+  char output_line[MAXLINE];
+  strcpy(line, contents);
 
   /* Выводим строку и ее номер на экран */
   if (contents[0] != '\0') {
-    printf(MAGENTA "%d" RESET " %s", index + 1, contents);
+    if (cursor >= 0){
+      strncpy(output_line, line, cursor);
+      output_line[cursor] = '|';
+      strcpy(output_line+cursor+1, line+cursor);
+      printf(MAGENTA "%d" RESET " %s", index + 1, output_line);
+    }
+    else
+      printf(MAGENTA "%d" RESET " %s", index + 1, line);
   }
 }

@@ -18,6 +18,7 @@ static void remove_line(int index, char *contents, int cursor, void *data);
 /**
 * Удаляет первую пустую строку
 */
+
 static int flag = 0;
 void remove_first_entry_line(text txt){
   process_forward(txt, remove_line, txt);
@@ -37,16 +38,12 @@ int isos(char *str){
 
 static void remove_line(int index, char *contents, int cursor, void *data)
 {
-  /* Функция обработчик всегда получает существующую строку */
   assert(contents != NULL);
 
-  /* Декларируем неиспользуемые параметры */
   UNUSED(index);
   UNUSED(cursor);
-  UNUSED(data);
 
   if((contents[0] == '\n' || isos(contents) == 1 ) && contents[0] != '\0' && !flag){
-    printf("%d\n", index + 1);
     delete_line(data, index + 1);
     flag = 1;
   }
