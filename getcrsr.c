@@ -15,11 +15,12 @@
 #include <setjmp.h>
 #include "data.h"
 
-static jmp_buf s_jumpBuffer;
+//static jmp_buf s_jumpBuffer;
 static void get_cursor_position(int index, char* contents, int cursor, void* data);
 
-dat getcrsr(text txt)
+void getcrsr(text txt)
 {
+  /* Экспериментальная и оказавшаяся ненужной часть с возвращением параметров из функции
   int val;
   val = setjmp(s_jumpBuffer);
   dat data;
@@ -31,19 +32,21 @@ dat getcrsr(text txt)
     data.line = val;
     return data;
   }
+  */
   process_forward(txt, get_cursor_position, NULL);
-  return data;
 }
 
 static void get_cursor_position(int index, char* contents, int cursor, void* data)
 {
   assert(contents != NULL);
   UNUSED(data);
-  if (cursor > 0){
+  if (cursor >= 0){
     printf("cursor line - %d\ncursor position -  %d\n", index + 1, cursor + 1);
+    /*
     int val = index;
     val *= 65536;
     val += cursor;
     longjmp(s_jumpBuffer, val);
+    */
   }
 }

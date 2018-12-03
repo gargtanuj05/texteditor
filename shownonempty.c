@@ -12,8 +12,8 @@
 #include "text/text.h"
 #include <stdlib.h>
 #include <ctype.h>
+#include <string.h>
 
-#define RESET "\033[0m"
 
 static void shownonempty_line(int index, char* contents, int cursor, void* data);
 
@@ -36,15 +36,24 @@ static void shownonempty_line(int index, char* contents, int cursor, void* data)
   if (contents[0] != '\0'){
     int i = 1;
     while(contents[i] != '\0'){
-      /* Проверям является ли текущий символ пробелом(пробел,
-      * табуляция, etc)*/
+      /* Проверям является ли текущий символ пробельным */
       if (isspace(contents[i])){
         i++;
         continue;
       }
 
       /* Если нашли непробельный символ, то выводим строку*/
-      printf(RESET"%s", contents);
+      if (cursor >= 0){
+        /* Есил в строке есть курсор выводим вместе с ним */
+        for (int j = 0; j < (int)strlen(contents) + 1; j++){
+            if (j == cursor){
+                printf("|");
+            }
+            printf("%c",contents[j]);
+        }
+      }
+      else
+        printf("%s", contents);
       break;
     }
   }

@@ -18,7 +18,6 @@ static void move_cursor_left(int index, char *contents, int cursor, void*data);
 void mwbb(text txt)
 {
   process_forward(txt, move_cursor_left, txt);
-  getcrsr(txt);
 }
 
 static void move_cursor_left(int index, char *contents, int cursor, void*data)
@@ -28,10 +27,12 @@ static void move_cursor_left(int index, char *contents, int cursor, void*data)
   UNUSED(data);
   
   if (cursor > 0){
-    printf("%d %d\n",index, cursor);
+    /* Пока непробельный символ || не начало строки -> двигаем курсор влево */
     while(cursor > 1 && !isspace(contents[cursor])){
       cursor--;
     }
+    /* Переставляем курсор на новую позицию */
     mwcrsr(data, index + 1, cursor + 1);
+
   }
 }

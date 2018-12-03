@@ -14,10 +14,20 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+/**
+* Устанавливает курсор в заданную позицию
+*
+* @param txt текст
+* @param new_line номер строки
+* @param new_position позиция курсора в строке
+* @returns none
+*/
 void change_cursor_position(text txt, int new_line, int new_position)
 {
   new_line--;
   new_position--;
+  if (new_line < 0 || new_line > (int)txt->length){
+    new_line = 0;
   if (new_line < 0 || new_line > (int)txt->length || new_position < 0){
     return;
   }
@@ -26,6 +36,8 @@ void change_cursor_position(text txt, int new_line, int new_position)
   for (int i = 0; i < new_line; i++){
     p = p->next;
   }
+  if (new_position > (int)strlen(p->contents) || new_position < 0){
+      new_position = 0;
   if (new_position > (int)strlen(p->contents)){
       return;
   }

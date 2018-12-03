@@ -69,7 +69,7 @@ void mwbb(text txt);
 /**
 * Возвращает текущую позицию курсора
 */
-dat getcrsr(text txt);
+void getcrsr(text txt);
 
 /**
 * Удаляет текущю строку
@@ -86,7 +86,6 @@ void showfirstwords(text txt);
 */
 void c1n(text txt);
 
-void printpos(dat val);
 
 /**
 * Перемещает курсор в начало строки

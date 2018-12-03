@@ -68,14 +68,5 @@ void remove_all(text txt);
 */
 void delete_line(text txt, int line_num);
 
-/**
-* Устанавливает курсор в заданную позицию
-*
-* @param txt текст
-* @param new_line номер строки
-* @param new_position позиция курсора в строке
-* @returns none
-*/
-void change_cursor_position(text txt, int new_line, int new_position);
 
 #endif
