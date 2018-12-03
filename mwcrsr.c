@@ -1,5 +1,9 @@
 /**
-* Перемещает курсор на заданную позицию
+* mwcrsr -- реализует перемещение курсора
+*
+* Copyright (c) 2018, Egor Ignatov <ignatov@petrsu.ru>
+*
+* This code is licensed under a MIT-style license.
 */
 
 #include "common.h"

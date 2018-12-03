@@ -28,9 +28,10 @@ static void move_cursor_left(int index, char *contents, int cursor, void*data)
   
   if (cursor > 0){
     /* Пока непробельный символ || не начало строки -> двигаем курсор влево */
-    while(cursor > 1 && !isspace(contents[cursor])){
+    while(cursor > -1 && !isspace(contents[cursor])){
       cursor--;
     }
+    cursor++;
     /* Переставляем курсор на новую позицию */
     mwcrsr(data, index + 1, cursor + 1);
 

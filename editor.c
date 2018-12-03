@@ -100,8 +100,17 @@ int main()
 
     /* Меняем позицию курсора на заданную */
     if (strcmp(cmd, "mwcrsr") == 0){
-      char* position = strtok(NULL, " \n"), *line = strtok(NULL, " \n");
-      mwcrsr(txt, atoi(position), atoi(line));
+      char* line = strtok(NULL, " \n"), *position = strtok(NULL, " \n");
+      if (line && position)
+        mwcrsr(txt, atoi(line), atoi(position));
+      else
+          printf("Uasge: mwcrsr line position");
+      continue;
+    }
+    
+    /* Перемещаем курсор в нчало слова */
+    if (strcmp(cmd, "mwbb") == 0){
+      mwbb(txt);
       continue;
     }
 
