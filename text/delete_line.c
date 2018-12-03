@@ -17,7 +17,7 @@ void delete_line(text txt, int line_num){
     p = p->next;
     p->previous = NULL;
     txt->begin = p;
-  } else if (line_num == txt->length){
+  } else if (line_num == (int)txt->length){
     p = p->previous;
     p->next = NULL;
     txt->end = p;
