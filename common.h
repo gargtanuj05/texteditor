@@ -27,25 +27,6 @@ void show(text txt);
 void load(text txt, char *filename);
 
 /**
- * Сохраняет текст в указанный файл
- */
-void save(text txt, char *filename);
-
-/**
- * Переводит в верхний регистр
- */
-void showupper(text txt);
-
-/**
- * Удаляет первую пустую строку
- */
-void remove_first_entry_line(text txt);
-
-/**
- * Выводит содержимое с нумерацией строк
- */
-void shownum(text txt);
-
 * Сохраняет текст в указанный файл
 */
 void save(text txt, char *filename);
@@ -104,6 +85,8 @@ void showfirstwords(text txt);
 * Перемещает первую строку в конец текста
 */
 void c1n(text txt);
+
+void printpos(dat val);
 
 /**
 * Перемещает курсор в начало строки

@@ -105,18 +105,6 @@ int main()
       continue;
     }
 
-    /* Выводим координаты курсора */
-    if (strcmp(cmd, "getcrsr") == 0){
-      getcrsr(txt);
-      continue;
-    }
-
-    /* Перемещаем курсор в начало слова, если возможно*/
-    if (strcmp(cmd, "mwbb") == 0){
-      mwbb(txt);
-      continue;
-    }
-
     /* Удаляем текущую строку */
     if (strcmp(cmd, "rc") == 0){
       remove_current_line(txt);
@@ -134,12 +122,7 @@ int main()
       c1n(txt);
       continue;
     }
-
-    if (strcmp(cmd, "printpos") == 0) {
-      printpos(getcrsr(txt));
-      continue;
-    }
-
+    
     /* Перемещаем курсор в начало строки */
     if (strcmp(cmd, "mlb") == 0) {
       cursor_to_begin(txt);
