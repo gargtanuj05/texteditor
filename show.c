@@ -21,6 +21,7 @@ void show(text txt)
 {
   /* Применяем функцию show_line к каждой строке текста */
   process_forward(txt, show_line, NULL);
+  printf("\n");
 }
 
 /**

@@ -24,6 +24,7 @@ static void shownum_line(int index, char *contents, int cursor, void *data);
 void shownum(text txt)
 {
   process_forward(txt, shownum_line, NULL);
+  printf("\n");
 }
 
 static void shownum_line(int index, char *contents, int cursor, void *data)
