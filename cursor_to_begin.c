@@ -33,6 +33,6 @@ static void mlb(int index, char *contents, int cursor, void *data)
   UNUSED(data);
 
   if (cursor != -1){
-    change_cursor_position((text)data, index + 1, 1);
+    mwcrsr((text)data, index + 1, 1);
   }
 }
