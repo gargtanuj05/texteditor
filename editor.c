@@ -113,7 +113,6 @@ int main()
           printf("Uasge: mwcrsr line position");
       continue;
     }
-
     /* Перемещаем курсор в нчало слова */
     if (strcmp(cmd, "mwbb") == 0){
       mwbb(txt);

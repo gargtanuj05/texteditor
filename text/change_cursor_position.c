@@ -24,6 +24,9 @@
 */
 void change_cursor_position(text txt, int new_line, int new_position)
 {
+  if (txt == NULL || txt->length == 0) {
+    return;
+  }
   new_line--;
   new_position--;
   if (new_line < 0 || new_line > (int)txt->length)
