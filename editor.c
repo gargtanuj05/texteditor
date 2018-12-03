@@ -100,11 +100,8 @@ int main()
 
     /* Меняем позицию курсора на заданную */
     if (strcmp(cmd, "mwcrsr") == 0){
-      char* line = strtok(NULL, " \n"), *position = strtok(NULL, " \n");
-      if (position && line)
-        mwcrsr(txt, atoi(line), atoi(position));
-      else
-        printf("Usage: mwcrsr line position\n");
+      char* position = strtok(NULL, " \n"), *line = strtok(NULL, " \n");
+      mwcrsr(txt, atoi(position), atoi(line));
       continue;
     }
 
@@ -138,6 +135,10 @@ int main()
       continue;
     }
 
+    if (strcmp(cmd, "printpos") == 0) {
+      printpos(getcrsr(txt));
+      continue;
+    }
 
     /* Перемещаем курсор в начало строки */
     if (strcmp(cmd, "mlb") == 0) {

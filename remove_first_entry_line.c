@@ -18,7 +18,6 @@ static void remove_line(int index, char *contents, int cursor, void *data);
 /**
 * Удаляет первую пустую строку
 */
-
 static int flag = 0;
 void remove_first_entry_line(text txt){
   process_forward(txt, remove_line, txt);

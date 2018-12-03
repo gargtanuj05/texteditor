@@ -27,19 +27,32 @@ void showlineswithdigits(text txt)
 static void digit_line(int index, char *contents, int cursor, void *data)
 {
   int mark = 0;
+  
   assert(contents != NULL);
-
+  
   UNUSED(index);
   UNUSED(cursor);
   UNUSED(data);
-
-  for(unsigned int i = 0; i<strlen(contents); i++) {
+  
+  char output_line[MAXLINE];
+  
+  for(int i = 0; i<(int)strlen(contents); i++) {
     if (isdigit(contents[i])){
       mark = 1;
       break;
     }
   }
-  /* Выводим строку, если присутствуют цифры */
+  
+  /* Выводим строку с цифрами на экран */
   if (mark == 1)
-  printf("%s", contents);
+  {
+    if (cursor >= 0){
+      strncpy(output_line, contents, cursor);
+      output_line[cursor] = '|';
+      strcpy(output_line+cursor+1, contents+cursor);
+      printf("%s", output_line);
+    } else {
+      printf("%s", contents);
+    }
+  }
 }
