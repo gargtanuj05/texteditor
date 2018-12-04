@@ -15,6 +15,7 @@ typedef struct _dat
 {
   int line;
   int cursor;
+  text txt;
 } dat;
 
 #endif
