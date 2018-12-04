@@ -108,9 +108,9 @@ int main()
     if (strcmp(cmd, "mwcrsr") == 0){
       char* line = strtok(NULL, " \n"), *position = strtok(NULL, " \n");
       if (line && position)
-        mwcrsr(txt, atoi(line), atoi(position));
+      mwcrsr(txt, atoi(line), atoi(position));
       else
-          printf("Uasge: mwcrsr line position");
+      printf("Uasge: mwcrsr line position");
       continue;
     }
     /* Перемещаем курсор в нчало слова */
@@ -146,6 +146,24 @@ int main()
     /* Выводим часть строки от начала до курсора */
     if (strcmp(cmd, "plb") == 0) {
       plb(txt);
+      continue;
+    }
+
+    /* Выводим столбец длин строк текста */
+    if (strcmp(cmd, "showlengths") == 0) {
+      showlengths(txt);
+      continue;
+    }
+
+    /* Перемещаем курсор в начало следующего слова, если это возможно  */
+    if (strcmp(cmd, "mnwbf") == 0) {
+      mnwbf(txt);
+      continue;
+    }
+
+    /* Удаляем строку перед текущей */
+    if (strcmp(cmd, "rp") == 0) {
+      rp(txt);
       continue;
     }
 

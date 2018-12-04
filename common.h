@@ -103,4 +103,19 @@ void cursor_to_begin(text txt);
 */
 void plb(text txt);
 
+/**
+*  Выводит столбец длин строк текста
+*/
+void showlengths(text txt);
+
+/**
+*  Перемещает курсор в начало следующего слова, если это возможно
+*/
+void mnwbf(text txt);
+
+/**
+*  Удаляет строку перед текущей
+*/
+void rp(text txt);
+
 #endif
