@@ -28,7 +28,7 @@ void change_cursor_position(text txt, int new_line, int new_position) {
   }
   new_line--;
   new_position--;
-  if (new_line < 0 || new_line > (int)txt->length)
+  if (new_line < 0 || new_line >= (int)txt->length)
     new_line = 0;
   node *p;
   p = txt->begin;
