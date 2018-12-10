@@ -28,7 +28,6 @@ static void showupper_line(int index, char *contents, int cursor, void *data);
 void showupper(text txt) {
   /* Применяем функцию showupper_line к каждой строке текста */
   process_forward(txt, showupper_line, NULL);
-  printf("\n");
 }
 
 static void showupper_line(int index, char *contents, int cursor, void *data) {
@@ -48,8 +47,12 @@ static void showupper_line(int index, char *contents, int cursor, void *data) {
     strcpy(output_line + cursor + 1, line + cursor);
     toup(output_line);
     printf("%s", output_line);
+    if (output_line[strlen(output_line) - 1] != '\n')
+      printf("\n");
   } else {
     toup(line);
     printf("%s", line);
+    if (line[strlen(line) - 1] != '\n')
+      printf("\n");
   }
 }

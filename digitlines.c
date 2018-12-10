@@ -48,8 +48,12 @@ static void digit_line(int index, char *contents, int cursor, void *data) {
       output_line[cursor] = '|';
       strcpy(output_line + cursor + 1, contents + cursor);
       printf("%s", output_line);
+      if (output_line[strlen(output_line) - 1] != '\n')
+        printf("\n");
     } else {
       printf("%s", contents);
+      if (contents[strlen(contents) - 1] != '\n')
+        printf("\n");
     }
   }
 }

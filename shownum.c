@@ -21,10 +21,7 @@ static void shownum_line(int index, char *contents, int cursor, void *data);
 /**
  * Выводит содержимое с нумерацией строк
  */
-void shownum(text txt) {
-  process_forward(txt, shownum_line, NULL);
-  printf("\n");
-}
+void shownum(text txt) { process_forward(txt, shownum_line, NULL); }
 
 static void shownum_line(int index, char *contents, int cursor, void *data) {
   assert(contents != NULL);
@@ -43,7 +40,12 @@ static void shownum_line(int index, char *contents, int cursor, void *data) {
       output_line[cursor] = '|';
       strcpy(output_line + cursor + 1, line + cursor);
       printf(MAGENTA "%d" RESET " %s", index + 1, output_line);
-    } else
+      if (output_line[strlen(output_line) - 1] != '\n')
+        printf("\n");
+    } else {
       printf(MAGENTA "%d" RESET " %s", index + 1, line);
+      if (line[strlen(line) - 1] != '\n')
+        printf("\n");
+    }
   }
 }

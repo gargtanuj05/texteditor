@@ -30,11 +30,7 @@ static void move_cursor_forward(int index, char *contents, int cursor,
 
     int y = strlen(contents);
 
-    if (cursor == y || cursor == y - 1) {
-      printf("Can not move cursor\n");
-    }
-
-    else {
+    if (cursor != y && cursor != y - 1) {
       mwcrsr(data, index + 1, cursor + 2);
     }
   }

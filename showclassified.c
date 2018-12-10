@@ -11,6 +11,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /**
  * Заменяет непробельные символы на символ '*' звезды
@@ -37,4 +38,6 @@ static void show_stars(int index, char *contents, int cursor, void *data) {
       printf("%c", contents[i]);
     i++;
   }
+  if (contents[strlen(contents) - 1] != '\n')
+    printf("\n");
 }

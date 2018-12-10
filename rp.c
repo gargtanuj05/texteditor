@@ -1,5 +1,5 @@
 /**
- * rp.c -- удаляет строку перед текущей.
+ * rp.c -- удаляет строку перед текущей
  *
  * Copyright (c) 2018, Dmitriy Kustov <kustov@petrsu.ru>
  *
@@ -16,20 +16,16 @@
 static void rp_line(int index, char *contents, int cursor, void *data);
 
 /**
- * Выводит содержимое указанного файла на экран
+ * Удаляет строку перед текущей
  */
-void rp(text txt) { process_forward(txt, rp_line, NULL); }
+void rp(text txt) { process_forward(txt, rp_line, txt); }
 
-/**
- * Выводит содержимое указанного файла на экран
- */
 static void rp_line(int index, char *contents, int cursor, void *data) {
   assert(contents != NULL);
 
-  UNUSED(index);
-  UNUSED(data);
+  UNUSED(cursor);
 
-  if (cursor > 0) {
-    delete_line(data, index);
+  if (index > 0 && cursor >= 0) {
+    delete_line((text)data, index);
   }
 }

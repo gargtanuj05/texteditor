@@ -16,15 +16,19 @@
 static void read_first(int index, char *contents, int cursor, void *data);
 
 static char first_line[MAXLINE];
+static int last_line = 0;
+
 void c1n(text txt) {
   /*Применяем функцию read_first к каждой строке текста */
-  process_forward(txt, read_first, NULL);
+  process_forward(txt, read_first, txt);
 
   /*Удаляем первую строку */
   delete_line(txt, 1);
 
   /*Записываем первую строку в конец текста*/
   append_line(txt, first_line);
+
+  mwcrsr(txt, last_line, strlen(first_line));
 }
 
 static void read_first(int index, char *contents, int cursor, void *data) {
@@ -38,4 +42,5 @@ static void read_first(int index, char *contents, int cursor, void *data) {
     strncpy(first_line, contents, strlen(contents));
     first_line[strlen(contents)] = '\0';
   }
+  last_line = index + 1;
 }

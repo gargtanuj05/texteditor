@@ -20,7 +20,7 @@ static void get_plb(int index, char *contents, int cursor, void *data);
 
 void plb(text txt) {
   /*Обработка строк*/
-  process_forward(txt, get_plb, NULL);
+  process_forward(txt, get_plb, txt);
 }
 
 static void get_plb(int index, char *contents, int cursor, void *data) {
@@ -34,6 +34,7 @@ static void get_plb(int index, char *contents, int cursor, void *data) {
     for (int i = 0; i < cursor; i++) {
       printf("%c", contents[i]);
     }
-    printf("\n");
   }
+  if (contents[cursor - 1] != '\0')
+    printf("\n");
 }

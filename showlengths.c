@@ -30,7 +30,7 @@ static void showlengths_line(int index, char *contents, int cursor,
   UNUSED(cursor);
   UNUSED(data);
 
-  int length = strlen(contents) - 1;
-
+  int length = contents[strlen(contents) - 1] == '\n' ? strlen(contents) - 1
+                                                      : strlen(contents);
   printf("\t %d \n", length);
 }

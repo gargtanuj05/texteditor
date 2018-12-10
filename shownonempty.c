@@ -50,5 +50,7 @@ static void shownonempty_line(int index, char *contents, int cursor,
         printf("%s", contents);
       break;
     }
+    if (contents[strlen(contents) - 1] != '\n')
+      printf("\n");
   }
 }

@@ -39,7 +39,11 @@ static void show_line(int index, char *contents, int cursor, void *data) {
     output_line[cursor] = '|';
     strcpy(output_line + cursor + 1, line + cursor);
     printf("%s", output_line);
+    if (output_line[strlen(output_line) - 1] != '\n')
+      printf("\n");
   } else {
     printf("%s", line);
+    if (line[strlen(line) - 1] != '\n')
+      printf("\n");
   }
 }

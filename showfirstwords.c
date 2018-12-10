@@ -9,6 +9,7 @@
 #include "common.h"
 #include "text/text.h"
 #include <assert.h>
+#include <ctype.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -28,7 +29,12 @@ static void showfirstwords_line(int index, char *contents, int cursor,
   UNUSED(cursor);
   UNUSED(data);
 
-  char *line = strtok(contents, " \n");
+  int i = 0;
 
-  printf("%s\n", line);
+  while (!isspace(contents[i]) && i < (int)strlen(contents)) {
+    printf("%c", contents[i]);
+    i++;
+  }
+  if (contents[i - 1] != '\n')
+    printf("\n");
 }

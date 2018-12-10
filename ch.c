@@ -22,10 +22,8 @@ void ch(text txt) {
 static void change(int index, char *contents, int cursor, void *data) {
   assert(contents != NULL);
 
-  UNUSED(index);
-  UNUSED(data);
+  if (cursor >= 0 && cursor != (int)strlen(contents)) {
 
-  if (cursor >= 0) {
     char begin[MAXLINE];
     char after[MAXLINE];
 
@@ -40,9 +38,10 @@ static void change(int index, char *contents, int cursor, void *data) {
     strncpy(contents, after, strlen(after));
     strncpy(contents + strlen(after), begin, strlen(contents));
 
-    /* Устанавливаем курсор в новую позицию */
+    /*Ставим курсор в новую позицию*/
     mwcrsr(data, index + 1, strlen(after) + 1);
 
+    /*Добавляем перевод на следуюющую строку в конце строки*/
     contents[strlen(contents)] = '\n';
     contents[strlen(contents) + 1] = '\0';
   }

@@ -109,7 +109,7 @@ int main() {
       if (line && position)
         mwcrsr(txt, atoi(line), atoi(position));
       else
-        printf("Uasge: mwcrsr line position");
+        printf("Usage: mwcrsr line position\n");
       continue;
     }
     /* Перемещаем курсор в нчало слова */
@@ -169,6 +169,18 @@ int main() {
     /* Удаляем строку перед текущей */
     if (strcmp(cmd, "rp") == 0) {
       rp(txt);
+      continue;
+    }
+
+    /* Обмен содержимого текущей строки до и после курсора */
+    if (strcmp(cmd, "ch") == 0) {
+      ch(txt);
+      continue;
+    }
+
+    /* Перемещаем курсор на один символ вправо, если это возможно */
+    if (strcmp(cmd, "mcf") == 0) {
+      mcf(txt);
       continue;
     }
 
