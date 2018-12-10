@@ -23,8 +23,6 @@ static void show_stars(int index, char *contents, int cursor, void *data);
 void showclassified(text txt){
 	/*Обработка строк*/
     process_forward(txt, show_stars, NULL);
-    /*Вывод текста*/
-    show(txt);
 }
 
 static void show_stars(int index, char *contents, int cursor, void *data){

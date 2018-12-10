@@ -148,6 +148,13 @@ int main()
       plb(txt);
       continue;
     }
+    
+    /* Разделяет строку на две по позиции курсора */
+    if (strcmp(cmd, "s") == 0) {
+      s(txt);
+      continue;
+    }
+
 
     /* Выводим столбец длин строк текста */
     if (strcmp(cmd, "showlengths") == 0) {

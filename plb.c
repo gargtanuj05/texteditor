@@ -34,7 +34,7 @@ static void get_plb(int index, char *contents, int cursor, void *data){
     UNUSED(data);
     
     /*Вывод строки от начала до курсора*/
-    if(cursor > 0){
+    if(cursor >= 0){
         for(int i = 0; i < cursor; i++){
             printf("%c",contents[i]);
         }
