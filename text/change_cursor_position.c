@@ -1,29 +1,28 @@
 /**
-* change_cursor_position -- реализует перемещение курсора
-*
-* Copyright (c) 2018, Egor Ignatov <ignatov@petrsu.ru>
-*
-* This code is licensed under a MIT-style license.
-*/
+ * change_cursor_position -- реализует перемещение курсора
+ *
+ * Copyright (c) 2018, Egor Ignatov <ignatov@petrsu.ru>
+ *
+ * This code is licensed under a MIT-style license.
+ */
 
-#include <stdio.h>
-#include <string.h>
-#include <assert.h>
 #include "_text.h"
 #include "text.h"
-#include <stdlib.h>
+#include <assert.h>
 #include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 /**
-* Устанавливает курсор в заданную позицию
-*
-* @param txt текст
-* @param new_line номер строки
-* @param new_position позиция курсора в строке
-* @returns none
-*/
-void change_cursor_position(text txt, int new_line, int new_position)
-{
+ * Устанавливает курсор в заданную позицию
+ *
+ * @param txt текст
+ * @param new_line номер строки
+ * @param new_position позиция курсора в строке
+ * @returns none
+ */
+void change_cursor_position(text txt, int new_line, int new_position) {
   if (txt == NULL || txt->length == 0) {
     return;
   }

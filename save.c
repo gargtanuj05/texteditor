@@ -1,25 +1,24 @@
 /**
-* save.c -- реализует команду сохранения текста
-*
-* Copyright (c) 2018, Darya Madrakhimova <madrahim@petrsu.ru>
-*
-* This code is licensed under a MIT-style license.
-*/
+ * save.c -- реализует команду сохранения текста
+ *
+ * Copyright (c) 2018, Darya Madrakhimova <madrahim@petrsu.ru>
+ *
+ * This code is licensed under a MIT-style license.
+ */
 
-#include <stdio.h>
-#include <assert.h>
 #include "common.h"
 #include "text/text.h"
+#include <assert.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 static void save_line(int index, char *contents, int cursor, void *data);
 
 /**
-* Сохраняет текст в указанный файл
-*/
-void save(text txt, char* filename)
-{
-  FILE* f;
+ * Сохраняет текст в указанный файл
+ */
+void save(text txt, char *filename) {
+  FILE *f;
   /* Открываем файл для записи, контролируя ошибки */
   if ((f = fopen(filename, "w")) == NULL) {
     printf("The file %s cannot be opened\n", filename);
@@ -28,19 +27,13 @@ void save(text txt, char* filename)
   process_forward(txt, save_line, f);
 }
 
-/**
-* Сохраняет текст в указанный файл
-*/
-static void save_line(int index, char *contents, int cursor, void *data)
-{
-  /* Функция обработчик всегда получает существующую строку */
+static void save_line(int index, char *contents, int cursor, void *data) {
   assert(contents != NULL);
 
-  /* Декларируем неиспользуемые параметры */
   UNUSED(index);
   UNUSED(cursor);
 
   /* Записываем строку в файл */
-  fprintf((FILE*) data, "%s", contents);
-  fflush((FILE*) data);
+  fprintf((FILE *)data, "%s", contents);
+  fflush((FILE *)data);
 }

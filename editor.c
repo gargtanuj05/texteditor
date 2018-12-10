@@ -1,22 +1,21 @@
 /**
-* editor.c -- строковый текстовый редактор
-*
-* Copyright (c) 2017, Alexander Borodin <aborod@petrsu.ru>
-*
-* This code is licensed under a MIT-style license.
-*/
+ * editor.c -- строковый текстовый редактор
+ *
+ * Copyright (c) 2017, Alexander Borodin <aborod@petrsu.ru>
+ *
+ * This code is licensed under a MIT-style license.
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "text/text.h"
 #include "common.h"
+#include "text/text.h"
 
 #define MAXLINE 255
 
-int main()
-{
+int main() {
   char cmdline[MAXLINE + 1];
   char *cmd;
   char *arg;
@@ -48,7 +47,7 @@ int main()
       if ((arg = strtok(NULL, " \n")) == NULL) {
         fprintf(stderr, "Usage: load filename\n");
       } else
-      load(txt, arg);
+        load(txt, arg);
       continue;
     }
 
@@ -105,22 +104,22 @@ int main()
     }
 
     /* Меняем позицию курсора на заданную */
-    if (strcmp(cmd, "mwcrsr") == 0){
-      char* line = strtok(NULL, " \n"), *position = strtok(NULL, " \n");
+    if (strcmp(cmd, "mwcrsr") == 0) {
+      char *line = strtok(NULL, " \n"), *position = strtok(NULL, " \n");
       if (line && position)
-      mwcrsr(txt, atoi(line), atoi(position));
+        mwcrsr(txt, atoi(line), atoi(position));
       else
-      printf("Uasge: mwcrsr line position");
+        printf("Uasge: mwcrsr line position");
       continue;
     }
     /* Перемещаем курсор в нчало слова */
-    if (strcmp(cmd, "mwbb") == 0){
+    if (strcmp(cmd, "mwbb") == 0) {
       mwbb(txt);
       continue;
     }
 
     /* Удаляем текущую строку */
-    if (strcmp(cmd, "rc") == 0){
+    if (strcmp(cmd, "rc") == 0) {
       remove_current_line(txt);
       continue;
     }
@@ -148,13 +147,12 @@ int main()
       plb(txt);
       continue;
     }
-    
+
     /* Разделяет строку на две по позиции курсора */
     if (strcmp(cmd, "s") == 0) {
       s(txt);
       continue;
     }
-
 
     /* Выводим столбец длин строк текста */
     if (strcmp(cmd, "showlengths") == 0) {

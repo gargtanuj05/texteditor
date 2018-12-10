@@ -1,35 +1,31 @@
 /**
-* ch.c -- для обмена содержимого текущей строки до и после курсора
-*
-* Copyright (c) 2018, Mihailov Igor <mihailov@petrsu.ru>
-*
-* This code is licensed under a MIT-style license.
-*/
+ * ch.c -- для обмена содержимого текущей строки до и после курсора
+ *
+ * Copyright (c) 2018, Mihailov Igor <mihailov@petrsu.ru>
+ *
+ * This code is licensed under a MIT-style license.
+ */
 
-#include <stdio.h>
-#include <string.h>
-#include <assert.h>
 #include "common.h"
 #include "text/text.h"
+#include <assert.h>
+#include <stdio.h>
+#include <string.h>
 
 static void change(int index, char *contents, int cursor, void *data);
 
-void ch(text txt)
-{
-  /* Применяем функцию first_to_end к каждой строке текста */
-  process_forward(txt, change, NULL);
+void ch(text txt) {
+  /* Применяем функцию change к каждой строке текста */
+  process_forward(txt, change, txt);
 }
 
-
-static void change(int index, char *contents, int cursor, void *data)
-{
+static void change(int index, char *contents, int cursor, void *data) {
   assert(contents != NULL);
 
   UNUSED(index);
   UNUSED(data);
 
-  if (cursor != -1)
-  {
+  if (cursor >= 0) {
     char begin[MAXLINE];
     char after[MAXLINE];
 
@@ -37,13 +33,17 @@ static void change(int index, char *contents, int cursor, void *data)
     strncpy(begin, contents, cursor);
     begin[cursor] = '\0';
 
-    strncpy(after, contents + cursor, strlen(contents));
-    after[strlen(contents) - cursor] = '\0';
+    strncpy(after, contents + cursor, strlen(contents) - cursor - 1);
+    after[strlen(contents) - cursor - 1] = '\0';
 
     /* Меняем местами строки до и после курсора */
-    strncpy(contents, after, cursor);
-    strncpy(contents + cursor, begin, strlen(contents));
+    strncpy(contents, after, strlen(after));
+    strncpy(contents + strlen(after), begin, strlen(contents));
 
-    contents[strlen(contents)] = '\0';
+    /* Устанавливаем курсор в новую позицию */
+    mwcrsr(data, index + 1, strlen(after) + 1);
+
+    contents[strlen(contents)] = '\n';
+    contents[strlen(contents) + 1] = '\0';
   }
 }

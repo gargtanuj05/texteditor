@@ -1,15 +1,15 @@
 /**
-* show.c -- реализует команду вывода содержимого текста с нумерацией строк
-*
-* Copyright (c) 2018, Darya Madrakhimova <madrahim@petrsu.ru>
-*
-* This code is licensed under a MIT-style license.
-*/
+ * show.c -- реализует команду вывода содержимого текста с нумерацией строк
+ *
+ * Copyright (c) 2018, Darya Madrakhimova <madrahim@petrsu.ru>
+ *
+ * This code is licensed under a MIT-style license.
+ */
 
-#include <stdio.h>
-#include <assert.h>
 #include "common.h"
 #include "text/text.h"
+#include <assert.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -19,16 +19,14 @@
 static void shownum_line(int index, char *contents, int cursor, void *data);
 
 /**
-* Выводит содержимое с нумерацией строк
-*/
-void shownum(text txt)
-{
+ * Выводит содержимое с нумерацией строк
+ */
+void shownum(text txt) {
   process_forward(txt, shownum_line, NULL);
   printf("\n");
 }
 
-static void shownum_line(int index, char *contents, int cursor, void *data)
-{
+static void shownum_line(int index, char *contents, int cursor, void *data) {
   assert(contents != NULL);
 
   UNUSED(data);
@@ -40,13 +38,12 @@ static void shownum_line(int index, char *contents, int cursor, void *data)
 
   /* Выводим строку и ее номер на экран */
   if (contents[0] != '\0') {
-    if (cursor >= 0){
+    if (cursor >= 0) {
       strncpy(output_line, line, cursor);
       output_line[cursor] = '|';
-      strcpy(output_line+cursor+1, line+cursor);
+      strcpy(output_line + cursor + 1, line + cursor);
       printf(MAGENTA "%d" RESET " %s", index + 1, output_line);
-    }
-    else
+    } else
       printf(MAGENTA "%d" RESET " %s", index + 1, line);
   }
 }

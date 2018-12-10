@@ -1,38 +1,30 @@
 /**
-* show.c -- реализует команду вывода хранимого текста на экран
-*
-* Copyright (c) 2017, Alexander Borodin <aborod@petrsu.ru>
-*
-* This code is licensed under a MIT-style license.
-*/
+ * show.c -- реализует команду вывода хранимого текста на экран
+ *
+ * Copyright (c) 2017, Alexander Borodin <aborod@petrsu.ru>
+ *
+ * This code is licensed under a MIT-style license.
+ */
 
-#include <stdio.h>
-#include <assert.h>
-#include <string.h>
 #include "common.h"
 #include "text/text.h"
+#include <assert.h>
+#include <stdio.h>
+#include <string.h>
 
 static void show_line(int index, char *contents, int cursor, void *data);
 
 /**
-* Выводит содержимое указанного файла на экран
-*/
-void show(text txt)
-{
+ * Выводит содержимое указанного файла на экран
+ */
+void show(text txt) {
   /* Применяем функцию show_line к каждой строке текста */
   process_forward(txt, show_line, NULL);
-  printf("\n");
 }
 
-/**
-* Выводит содержимое указанного файла на экран
-*/
-static void show_line(int index, char *contents, int cursor, void *data)
-{
-  /* Функция обработчик всегда получает существующую строку */
+static void show_line(int index, char *contents, int cursor, void *data) {
   assert(contents != NULL);
 
-  /* Декларируем неиспользуемые параметры */
   UNUSED(index);
   UNUSED(cursor);
   UNUSED(data);
@@ -42,10 +34,10 @@ static void show_line(int index, char *contents, int cursor, void *data)
   char output_line[MAXLINE];
   strcpy(line, contents);
 
-  if (cursor >= 0){
+  if (cursor >= 0) {
     strncpy(output_line, line, cursor);
     output_line[cursor] = '|';
-    strcpy(output_line+cursor+1, line+cursor);
+    strcpy(output_line + cursor + 1, line + cursor);
     printf("%s", output_line);
   } else {
     printf("%s", line);
