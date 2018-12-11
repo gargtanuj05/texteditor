@@ -6,35 +6,44 @@
  * This code is licensed under a MIT-style license.
  */
 
-#include <stdio.h>
-#include <assert.h>
 #include "common.h"
 #include "text/text.h"
+#include <assert.h>
+#include <stdio.h>
+#include <string.h>
 
 static void show_line(int index, char *contents, int cursor, void *data);
 
 /**
  * Выводит содержимое указанного файла на экран
  */
-void show(text txt)
-{
-    /* Применяем функцию show_line к каждой строке текста */
-    process_forward(txt, show_line, NULL);
+void show(text txt) {
+  /* Применяем функцию show_line к каждой строке текста */
+  process_forward(txt, show_line, NULL);
 }
 
-/**
- * Выводит содержимое указанного файла на экран
- */
-static void show_line(int index, char *contents, int cursor, void *data)
-{
-    /* Функция обработчик всегда получает существующую строку */
-    assert(contents != NULL);
-    
-    /* Декларируем неиспользуемые параметры */
-    UNUSED(index);
-    UNUSED(cursor);
-    UNUSED(data);
-    
-    /* Выводим строку на экран */
-    printf("%s", contents);
+static void show_line(int index, char *contents, int cursor, void *data) {
+  assert(contents != NULL);
+
+  UNUSED(index);
+  UNUSED(cursor);
+  UNUSED(data);
+
+  /* Выводим строку на экран */
+  char line[MAXLINE];
+  char output_line[MAXLINE];
+  strcpy(line, contents);
+
+  if (cursor >= 0) {
+    strncpy(output_line, line, cursor);
+    output_line[cursor] = '|';
+    strcpy(output_line + cursor + 1, line + cursor);
+    printf("%s", output_line);
+    if (output_line[strlen(output_line) - 1] != '\n')
+      printf("\n");
+  } else {
+    printf("%s", line);
+    if (line[strlen(line) - 1] != '\n')
+      printf("\n");
+  }
 }

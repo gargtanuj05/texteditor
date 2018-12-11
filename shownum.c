@@ -6,11 +6,12 @@
  * This code is licensed under a MIT-style license.
  */
 
-#include <stdio.h>
-#include <assert.h>
 #include "common.h"
 #include "text/text.h"
+#include <assert.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define MAGENTA "\x1b[35m"
 #define RESET "\033[0m"
@@ -20,29 +21,31 @@ static void shownum_line(int index, char *contents, int cursor, void *data);
 /**
  * Выводит содержимое с нумерацией строк
  */
-static int number;
-void shownum(text txt)
-{
-    number = 1;
-    process_forward(txt, shownum_line, NULL);
-}
+void shownum(text txt) { process_forward(txt, shownum_line, NULL); }
 
-/**
- * Выводит содержимое с нумерацией строк
- */
-static void shownum_line(int index, char *contents, int cursor, void *data)
-{
-    /* Функция обработчик всегда получает существующую строку */
-    assert(contents != NULL);
-    
-    /* Декларируем неиспользуемые параметры */
-    UNUSED(cursor);
-    UNUSED(data);
-    UNUSED(index);    
+static void shownum_line(int index, char *contents, int cursor, void *data) {
+  assert(contents != NULL);
 
-    /* Выводим строку и ее номер на экран */
-    if (contents[0] != '\0') {
-    	printf(MAGENTA "%d" RESET " %s", number, contents);
-    	number++;
+  UNUSED(data);
+  UNUSED(cursor);
+
+  char line[MAXLINE];
+  char output_line[MAXLINE];
+  strcpy(line, contents);
+
+  /* Выводим строку и ее номер на экран */
+  if (contents[0] != '\0') {
+    if (cursor >= 0) {
+      strncpy(output_line, line, cursor);
+      output_line[cursor] = '|';
+      strcpy(output_line + cursor + 1, line + cursor);
+      printf(MAGENTA "%d" RESET " %s", index + 1, output_line);
+      if (output_line[strlen(output_line) - 1] != '\n')
+        printf("\n");
+    } else {
+      printf(MAGENTA "%d" RESET " %s", index + 1, line);
+      if (line[strlen(line) - 1] != '\n')
+        printf("\n");
     }
+  }
 }

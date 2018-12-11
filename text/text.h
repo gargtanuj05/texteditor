@@ -21,7 +21,6 @@ typedef struct _list *text;
  */
 typedef struct _crsr *cursor;
 
-
 /**
  * Создает новый текстовый объект
  * @returns текст
@@ -36,27 +35,33 @@ text create_text();
  */
 void append_line(text txt, const char *contents);
 
-
 /**
  * Обрабатывает текст, применяя заданную функцию к каждой строке
- * 
+ *
  * @param txt текст
  * @param process функция-обработчик
  * @returns none
  */
-void process_forward(
-    text txt,
-    void (*process)(int index, char *contents, int cursor_position, void *data),
-    void *data
-);
-
+void process_forward(text txt,
+                     void (*process)(int index, char *contents,
+                                     int cursor_position, void *data),
+                     void *data);
 
 /**
  * Удаляет весь текст
- * 
+ *
  * @param txt текст
  * @returns none
  */
 void remove_all(text txt);
+
+/**
+ * Удаляет строку из текста
+ *
+ * @param txt текст
+ * @param line_num номер строки
+ * @returns none
+ */
+void delete_line(text txt, int line_num);
 
 #endif
