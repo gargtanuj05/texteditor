@@ -70,8 +70,7 @@ static void copy(int index, char *contents, int cursor, void *data) {
 
     /*Разделение строки*/
     append_line(fdata->txt, strncpy(buf, contents, cursor));
-    strncpy(buf + 1, contents + cursor, MAXLINE - 1 - cursor);
-    buf[0] = '\b';
+    strncpy(buf, contents + cursor, MAXLINE - 1 - cursor);
     append_line(fdata->txt, buf);
   }
 }
