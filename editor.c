@@ -67,6 +67,11 @@ int main() {
       continue;
     }
 
+    if (strcmp(cmd, "append") == 0){
+	append_line(txt,"sosi");
+	continue;
+    }
+
     /* Переводим в верхний регистр */
     if (strcmp(cmd, "showupper") == 0) {
       showupper(txt);
@@ -111,6 +116,11 @@ int main() {
       else
         printf("Usage: mwcrsr line position\n");
       continue;
+    }
+
+    if (strcmp(cmd, "getcrsr") == 0){
+	getcrsr(txt);
+	continue;
     }
     /* Перемещаем курсор в нчало слова */
     if (strcmp(cmd, "mwbb") == 0) {
@@ -181,6 +191,10 @@ int main() {
     /* Перемещаем курсор на один символ вправо, если это возможно */
     if (strcmp(cmd, "mcf") == 0) {
       mcf(txt);
+      continue;
+    }
+     if (strcmp(cmd, "rh") == 0) {
+      rh(txt);
       continue;
     }
 

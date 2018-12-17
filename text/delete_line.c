@@ -7,13 +7,24 @@
  */
 
 #include "_text.h"
+void change_cursor_position(text txt, int new_line, int new_position);
 
 void delete_line(text txt, int line_num) {
   node *p = txt->begin;
-  for (int i = 1; i < line_num; i++) {
+  int i;
+  for (i = 1; i < line_num; i++) {
     p = p->next;
   }
+  if (txt->cursor->line == p){
+      change_cursor_position(txt, i + 1, txt->cursor->position + 1);
+  }
   if (line_num == 1) {
+    if (txt->length == 1 || txt->length == 0){
+	txt->length = 0;
+	txt->begin = NULL;
+	txt->end = NULL;
+	return;
+    }
     p = p->next;
     p->previous = NULL;
     txt->begin = p;
@@ -25,5 +36,6 @@ void delete_line(text txt, int line_num) {
     p->previous->next = p->next;
     p->next->previous = p->previous;
   }
+  
   txt->length--;
 }

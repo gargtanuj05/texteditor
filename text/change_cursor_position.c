@@ -34,7 +34,7 @@ void change_cursor_position(text txt, int new_line, int new_position) {
   p = txt->begin;
   for (int i = 0; i < new_line; i++)
     p = p->next;
-  if (new_position > (int)strlen(p->contents) || new_position < 0)
+  if (new_position >= (int)strlen(p->contents) || new_position < 0)
     new_position = 0;
   txt->cursor->position = new_position;
   txt->cursor->line = p;

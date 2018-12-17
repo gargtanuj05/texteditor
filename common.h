@@ -133,4 +133,6 @@ void ch(text txt);
  */
 void mcf(text txt);
 
+void rh(text txt);
+
 #endif
