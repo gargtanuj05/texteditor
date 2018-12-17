@@ -19,7 +19,7 @@
 static void get_plb(int index, char *contents, int cursor, void *data);
 
 void plb(text txt) {
-  /*Обработка строк*/
+  /*Обработка строк */
   process_forward(txt, get_plb, txt);
 }
 
@@ -29,12 +29,12 @@ static void get_plb(int index, char *contents, int cursor, void *data) {
   UNUSED(index);
   UNUSED(data);
 
-  /*Вывод строки от начала до курсора*/
+  /* Вывод строки от начала до курсора */
   if (cursor >= 0) {
     for (int i = 0; i < cursor; i++) {
       printf("%c", contents[i]);
     }
+    if (contents[cursor - 1] != '\0')
+      printf("\n");
   }
-  if (contents[cursor - 1] != '\0')
-    printf("\n");
 }

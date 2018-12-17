@@ -29,8 +29,6 @@ static void remove_line(int index, char *contents, int cursor, void *data) {
 
   if (cursor >= 0 && flag) {
     delete_line(data, index + 1);
-    /* Передвигаем курсор на предыдущую строку если возможно */
-    mwcrsr(data, index, cursor + 1);
     flag = 0;
   }
 }

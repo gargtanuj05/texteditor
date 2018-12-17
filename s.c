@@ -15,12 +15,13 @@
 #include <string.h>
 
 /**
- *
  * Разделяет строку на две по позиции курсора
- *
  */
 static void copy(int index, char *contents, int cursor, void *data);
 static void copy_back(int index, char *contents, int cursor, void *data);
+
+/* Дополнительно проверяем, не пустой ли текст */
+static int flag = 0;
 
 void s(text txt) {
 
@@ -29,20 +30,21 @@ void s(text txt) {
   fdata->cursor = 0;
   fdata->txt = create_text();
 
-  /*Обработка строк*/
+  /* Обработка строк */
   process_forward(txt, copy, fdata);
+  if (flag) {
+    /* Подготовка главного текста */
+    remove_all(txt);
 
-  /*Подготовка главного текста*/
-  remove_all(txt);
+    /* Заполнение текста содержимым */
+    process_forward(fdata->txt, copy_back, txt);
 
-  /*Заполнение текста содержимым*/
-  process_forward(fdata->txt, copy_back, txt);
-
-  /*Установка курсора*/
-  mwcrsr(txt, fdata->line, fdata->cursor);
+    /* Установка курсора */
+    mwcrsr(txt, fdata->line, fdata->cursor);
+  }
 }
 
-/*Заполнение текста содержимым*/
+/* Заполнение текста содержимым */
 static void copy_back(int index, char *contents, int cursor, void *data) {
   assert(contents != NULL);
 
@@ -53,9 +55,10 @@ static void copy_back(int index, char *contents, int cursor, void *data) {
   append_line(txt, contents);
 }
 
-/*Разделяет строку contents на две и копирует содержимое в буфер buf_txt*/
+/* Разделяет строку contents на две и копирует содержимое в буфер buf_txt */
 static void copy(int index, char *contents, int cursor, void *data) {
   assert(contents != NULL);
+  flag = 1;
 
   UNUSED(index);
   dat *fdata = data;
@@ -64,11 +67,11 @@ static void copy(int index, char *contents, int cursor, void *data) {
   if (cursor < 0) {
     append_line(fdata->txt, contents);
   } else {
-    /*Сохранение координат курсора*/
+    /* Сохранение координат курсора */
     fdata->line = index + 1;
     fdata->cursor = cursor + 1;
 
-    /*Разделение строки*/
+    /* Разделение строки */
     append_line(fdata->txt, strncpy(buf, contents, cursor));
     strncpy(buf, contents + cursor, MAXLINE - 1 - cursor);
     append_line(fdata->txt, buf);

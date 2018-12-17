@@ -28,29 +28,27 @@ static void shownonempty_line(int index, char *contents, int cursor,
   UNUSED(index);
 
   /* Вывод непустых строк*/
-  if (contents[0] != '\0') {
-    int i = 1;
-    while (contents[i] != '\0') {
-      /* Проверям является ли текущий символ пробельным */
-      if (isspace(contents[i])) {
-        i++;
-        continue;
-      }
-
-      /* Если нашли непробельный символ, то выводим строку*/
-      if (cursor >= 0) {
-        /* Есил в строке есть курсор выводим вместе с ним */
-        for (int j = 0; j < (int)strlen(contents) + 1; j++) {
-          if (j == cursor) {
-            printf("|");
-          }
-          printf("%c", contents[j]);
-        }
-      } else
-        printf("%s", contents);
-      break;
+  int i = 0;
+  while (contents[i] != '\0') {
+    /* Проверям является ли текущий символ пробельным */
+    if (isspace(contents[i])) {
+      i++;
+      continue;
     }
-    if (contents[strlen(contents) - 1] != '\n')
-      printf("\n");
+
+    /* Если нашли непробельный символ, то выводим строку*/
+    if (cursor >= 0) {
+      /* Есил в строке есть курсор выводим вместе с ним */
+      for (int j = 0; j < (int)strlen(contents) + 1; j++) {
+        if (j == cursor) {
+          printf("|");
+        }
+        printf("%c", contents[j]);
+      }
+    } else
+      printf("%s", contents);
+    break;
   }
+  if (contents[strlen(contents) - 1] != '\n')
+    printf("\n");
 }

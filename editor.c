@@ -112,6 +112,11 @@ int main() {
         printf("Usage: mwcrsr line position\n");
       continue;
     }
+
+    if (strcmp(cmd, "getcrsr") == 0) {
+      getcrsr(txt);
+      continue;
+    }
     /* Перемещаем курсор в нчало слова */
     if (strcmp(cmd, "mwbb") == 0) {
       mwbb(txt);
@@ -181,6 +186,54 @@ int main() {
     /* Перемещаем курсор на один символ вправо, если это возможно */
     if (strcmp(cmd, "mcf") == 0) {
       mcf(txt);
+      continue;
+    }
+
+    /* Удаляем первую строку */
+    if (strcmp(cmd, "rh") == 0) {
+      rh(txt);
+      continue;
+    }
+
+    /* Удаляем строку после текущей */
+    if (strcmp(cmd, "rn") == 0) {
+      rn(txt);
+      continue;
+    }
+
+    /* Заменяем пробелы символом подчеркивания */
+    if (strcmp(cmd, "showunderscores") == 0) {
+      showunderscores(txt);
+      continue;
+    }
+
+    /* Перемещаем курсор в конец предыдущего слова, если это возможно */
+    if (strcmp(cmd, "mpweb") == 0) {
+      mpweb(txt);
+      continue;
+    }
+
+    /* Выводим содержимое в обратном порядке */
+    if (strcmp(cmd, "showrev") == 0) {
+      showrev(txt);
+      continue;
+    }
+
+    /* Выводим часть строки от курсора до конца строки */
+    if (strcmp(cmd, "ple") == 0) {
+      ple(txt);
+      continue;
+    }
+
+    /* Выводим часть строки от курсора до конца строки */
+    if (strcmp(cmd, "ple") == 0) {
+      ple(txt);
+      continue;
+    }
+
+    /* Выводим текст, опуская небуквенные символы */
+    if (strcmp(cmd, "showalphaonly") == 0) {
+      showalphaonly(txt);
       continue;
     }
 

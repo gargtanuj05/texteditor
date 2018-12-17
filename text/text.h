@@ -46,6 +46,18 @@ void process_forward(text txt,
                      void (*process)(int index, char *contents,
                                      int cursor_position, void *data),
                      void *data);
+/**
+ * Обрабатывает текст, применяя заданную функцию к каждой строке в обратном
+ * порядке
+ *
+ * @param txt текст
+ * @param process функция-обработчик
+ * @returns none
+ */
+void process_backward(text txt,
+                      void (*process)(int index, char *contents,
+                                      int cursor_position, void *data),
+                      void *data);
 
 /**
  * Удаляет весь текст

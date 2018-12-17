@@ -23,8 +23,6 @@ void rp(text txt) { process_forward(txt, rp_line, txt); }
 static void rp_line(int index, char *contents, int cursor, void *data) {
   assert(contents != NULL);
 
-  UNUSED(cursor);
-
   if (index > 0 && cursor >= 0) {
     delete_line((text)data, index);
   }

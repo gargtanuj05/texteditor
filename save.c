@@ -11,6 +11,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 static void save_line(int index, char *contents, int cursor, void *data);
 
@@ -35,5 +36,7 @@ static void save_line(int index, char *contents, int cursor, void *data) {
 
   /* Записываем строку в файл */
   fprintf((FILE *)data, "%s", contents);
+  if (contents[strlen(contents) - 1] != '\n')
+    fprintf((FILE *)data, "\n");
   fflush((FILE *)data);
 }
