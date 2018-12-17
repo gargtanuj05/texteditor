@@ -15,15 +15,15 @@ void delete_line(text txt, int line_num) {
   for (i = 1; i < line_num; i++) {
     p = p->next;
   }
-  if (txt->cursor->line == p){
-      change_cursor_position(txt, i + 1, txt->cursor->position + 1);
+  if (txt->cursor->line == p) {
+    change_cursor_position(txt, i + 1, txt->cursor->position + 1);
   }
   if (line_num == 1) {
-    if (txt->length == 1 || txt->length == 0){
-	txt->length = 0;
-	txt->begin = NULL;
-	txt->end = NULL;
-	return;
+    if (txt->length == 1 || txt->length == 0) {
+      txt->length = 0;
+      txt->begin = NULL;
+      txt->end = NULL;
+      return;
     }
     p = p->next;
     p->previous = NULL;
@@ -32,10 +32,10 @@ void delete_line(text txt, int line_num) {
     p = p->previous;
     p->next = NULL;
     txt->end = p;
-  } else {
+  } else if (line_num < (int)txt->length) {
     p->previous->next = p->next;
     p->next->previous = p->previous;
   }
-  
+
   txt->length--;
 }
