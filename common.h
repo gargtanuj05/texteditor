@@ -27,6 +27,21 @@ void show(text txt);
 void load(text txt, char *filename);
 
 /**
+ * Выводит текст с капитализацией символов, которым предшествует пробел
+ */
+void showupfirst(text txt);
+
+/**
+ * Удаляет первую непустую строку 
+ */
+void r1ne(text txt);
+
+/**
+ * Перемещает курсор в конец строки
+ */
+void mle(text txt);
+
+/**
  * Сохраняет текст в указанный файл
  */
 void save(text txt, char *filename);

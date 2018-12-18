@@ -78,6 +78,24 @@ int main() {
       remove_first_entry_line(txt);
       continue;
     }
+    
+    /* Выводим текст с капитализацией символов, которым предшествует пробел */
+    if (stcmp(cmd, "showupfirst") == 0) {
+      showupfirst(txt);
+      continue;
+    }
+
+    /* Перемещаем курсор в конец строки */
+    if (strcmp(cmd, "mle") == 0) {
+      mle(txt);
+      continue;	
+    }
+
+    /* Удаляем первую непустую строку  */
+    if (strcmp(cmd, "r1ne") == 0) {
+      r1ne(txt);
+      continue;
+    }
 
     /* Выводим содержимое с нумерацией строк */
     if (strcmp(cmd, "shownum") == 0) {
