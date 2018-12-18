@@ -80,7 +80,7 @@ int main() {
     }
     
     /* Выводим текст с капитализацией символов, которым предшествует пробел */
-    if (stcmp(cmd, "showupfirst") == 0) {
+    if (strcmp(cmd, "showupfirst") == 0) {
       showupfirst(txt);
       continue;
     }
