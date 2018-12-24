@@ -37,6 +37,5 @@ void delete_line(text txt, int line_num) {
     p->previous->next = p->next;
     p->next->previous = p->previous;
   }
-+
   txt->length--;
 }
