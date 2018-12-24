@@ -1,5 +1,5 @@
 /**
- * delete_line.c -- функции для удаления строк
+ * delete_line.c -- Функция удаления строки
  *
  * Copyright (c) 2018, Hristoforov Egor <hristofo@petrsu.ru>
  *
@@ -15,7 +15,7 @@ void delete_line(text txt, int line_num) {
   for (i = 1; i < line_num; i++) {
     p = p->next;
   }
-  if (txt->cursor->line == p) {
+  if (txt->cursor->line == p && line_num != (int)txt->length) {
     change_cursor_position(txt, i + 1, txt->cursor->position + 1);
   }
   if (line_num == 1) {
@@ -29,6 +29,7 @@ void delete_line(text txt, int line_num) {
     p->previous = NULL;
     txt->begin = p;
   } else if (line_num == (int)txt->length) {
+    change_cursor_position(txt, line_num -1, txt->cursor->position + 1);
     p = p->previous;
     p->next = NULL;
     txt->end = p;
@@ -36,6 +37,6 @@ void delete_line(text txt, int line_num) {
     p->previous->next = p->next;
     p->next->previous = p->previous;
   }
-
++
   txt->length--;
 }
