@@ -1,2 +1,2 @@
-# texteditor
-Study project
+# text_editor
+Essential project
